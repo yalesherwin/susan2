@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <title>SUSAN外贸基础教学第二课：FOB / CIF / EXW 与货代配合</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"PingFang SC",
+                   "Hiragino Sans GB","Microsoft Yahei",sans-serif;
+      line-height: 1.6;
+      color: #222;
+      background: #f5f7fb;
+    }
+    header {
+      background: linear-gradient(135deg,#004b8d,#00a0d2);
+      color: #fff;
+      padding: 24px 16px 18px;
+      text-align: center;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+    header h1 { font-size: 1.6rem; margin-bottom: 6px; }
+    header p { font-size: 0.9rem; opacity: 0.9; }
+
+    nav {
+      margin-top: 10px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 8px;
+      font-size: 0.85rem;
+    }
+    nav a {
+      color: #fff;
+      text-decoration: none;
+      border: 1px solid rgba(255,255,255,.7);
+      padding: 4px 10px;
+      border-radius: 99px;
+      backdrop-filter: blur(6px);
+      background-color: rgba(255,255,255,0.1);
+    }
+    nav a:hover { background-color: rgba(255,255,255,0.25); }
+
+    main {
+      max-width: 1100px;
+      margin: 18px auto 40px;
+      padding: 0 14px 40px;
+    }
+    section {
+      background: #fff;
+      border-radius: 14px;
+      padding: 18px 16px 20px;
+      margin-bottom: 14px;
+      box-shadow: 0 10px 25px rgba(15,35,90,0.06);
+    }
+    section h2 {
+      font-size: 1.2rem;
+      margin-bottom: 10px;
+      position: relative;
+      padding-left: 10px;
+    }
+    section h2::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 6px;
+      width: 4px;
+      height: 18px;
+      border-radius: 99px;
+      background: linear-gradient(180deg,#0077c8,#00a0d2);
+    }
+
+    p { margin: 6px 0; font-size: 0.95rem; }
+    ul { margin-left: 1.4em; padding-left: 0.4em; font-size: 0.94rem; }
+    li { margin: 3px 0; }
+
+    .tag {
+      display: inline-block;
+      font-size: 0.75rem;
+      padding: 2px 8px;
+      border-radius: 999px;
+      background: #eef4ff;
+      color: #2251cf;
+      margin-right: 6px;
+      margin-bottom: 6px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit,minmax(230px,1fr));
+      gap: 12px;
+      margin-top: 8px;
+    }
+
+    .card {
+      background: #fafbff;
+      border-radius: 12px;
+      padding: 12px 12px 14px;
+      border: 1px solid #e1e5f2;
+    }
+    .card h3 {
+      font-size: 1rem;
+      margin-bottom: 6px;
+    }
+    .card small { color: #777; }
+
+    .label {
+      font-size: 0.75rem;
+      padding: 1px 6px;
+      border-radius: 999px;
+      background: #e6f4ea;
+      color: #137333;
+      margin-left: 4px;
+    }
+
+    .flow {
+      counter-reset: step;
+      margin-top: 6px;
+    }
+    .flow-item {
+      position: relative;
+      padding-left: 30px;
+      margin: 4px 0 8px;
+    }
+    .flow-item::before {
+      counter-increment: step;
+      content: counter(step);
+      position: absolute;
+      left: 0;
+      top: 2px;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: #004b8d;
+      color: #fff;
+      font-size: 0.8rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .highlight {
+      background: #fff7e6;
+      border-left: 3px solid #ffa117;
+      padding: 8px 10px;
+      border-radius: 8px;
+      font-size: 0.9rem;
+      margin-top: 4px;
+    }
+
+    .two-columns {
+      display: grid;
+      grid-template-columns: repeat(auto-fit,minmax(260px,1fr));
+      gap: 12px;
+      margin-top: 8px;
+    }
+
+    .compare {
+      border-radius: 12px;
+      padding: 10px;
+      border: 1px dashed #d0d7f0;
+      background: #f8fafc;
+      font-size: 0.9rem;
+    }
+    .compare h3 { font-size: 1rem; margin-bottom: 4px; }
+
+    .note-title {
+      font-size: 0.85rem;
+      letter-spacing: 0.1em;
+      color: #666;
+      text-transform: uppercase;
+      margin-bottom: 3px;
+    }
+
+    .pill {
+      display: inline-block;
+      padding: 2px 8px;
+      border-radius: 999px;
+      border: 1px solid #e0e8ff;
+      background: #f5f8ff;
+      font-size: 0.75rem;
+      margin-right: 6px;
+      margin-bottom: 4px;
+    }
+
+    .quiz {
+      background: #f0f7ff;
+      border-radius: 12px;
+      padding: 10px 10px 12px;
+      border: 1px solid #d4e2ff;
+      margin-top: 8px;
+    }
+    .quiz label {
+      display: block;
+      font-size: 0.9rem;
+      margin: 3px 0;
+      cursor: pointer;
+    }
+    .quiz button {
+      margin-top: 6px;
+      padding: 5px 10px;
+      font-size: 0.85rem;
+      border-radius: 999px;
+      border: none;
+      cursor: pointer;
+      background: #004b8d;
+      color: #fff;
+    }
+    .quiz-result {
+      font-size: 0.9rem;
+      margin-top: 6px;
+      min-height: 20px;
+    }
+
+    footer {
+      text-align: center;
+      font-size: 0.8rem;
+      color: #777;
+      padding: 18px 0 10px;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      body { background: #0f172a; color: #e5e7eb; }
+      section { background: #020617; border-color: #1f2937; }
+      .card { background: #020617; border-color: #1f2937; }
+      .compare { background: #020617; border-color: #1f2937; }
+      .highlight { background: #451a03; border-color: #f59e0b; }
+    }
+  </style>
+</head>
+<body>
+<header>
+  <h1>SUSAN外贸基础教学：从 EXW 到 CIF 的实战流程</h1>
+  <p>根据手写笔记整理 · 帮你看懂贸易术语、货代配合和单据流程</p>
+  <nav>
+    <a href="#overview">总体思路</a>
+    <a href="#terms">三大贸易术语</a>
+    <a href="#flow">出货完整流程</a>
+    <a href="#freight">联系货代要点</a>
+    <a href="#freight-pay">运费预付 vs 到付</a>
+    <a href="#cif">CIF 实战提醒</a>
+    <a href="#docs">单据清单</a>
+    <a href="#quiz">小测验</a>
+  </nav>
+</header>
+
+<main>
+  <!-- 总览 -->
+  <section id="overview">
+    <h2>一、根据笔记的总体逻路</h2>
+    <p>
+      这张笔记的核心是：<strong>从接单 → 选贸易术语（FOB/CIF/EXW）→ 联系货代 → 准备单据 → 发货 → 收款</strong>，
+      中间最容易出问题的是：<strong>运费谁来付、什么时候付、以及和货代的沟通</strong>。
+    </p>
+    <div class="highlight">
+      <strong>记住一句话：</strong>贸易术语决定了你的责任和费用范围，
+      <strong>货代配合决定了你的时间和成本控制。</strong>
+    </div>
+    <div style="margin-top:8px;">
+      <span class="tag">FOB</span>
+      <span class="tag">CIF</span>
+      <span class="tag">EXW</span>
+      <span class="tag">Freight Prepaid</span>
+      <span class="tag">Freight Collect</span>
+      <span class="tag">CI · Packing List · BL</span>
+    </div>
+  </section>
+
+  <!-- 贸易术语 -->
+  <section id="terms">
+    <h2>二、三大贸易术语：EXW / FOB / CIF</h2>
+    <p>先弄清楚：在不同术语下，谁负责物流、谁出运费、谁和货代沟通。</p>
+    <div class="grid">
+      <div class="card">
+        <h3>EXW · 工厂交货 <span class="label">新手最省事</span></h3>
+        <small>Ex Works</small>
+        <ul>
+          <li>卖家责任最小：在工厂把货准备好，通知客户来提货。</li>
+          <li>客户负责：提货、订舱、报关、海运、保险等全部操作。</li>
+          <li>你需要做：按时备货 + 提前发 <strong>packing list &amp; 装货信息</strong> 给客户或客户货代。</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h3>FOB · 船上交货</h3>
+        <small>Free On Board</small>
+        <ul>
+          <li>卖家负责：国内段物流 + 出口报关 + 上船前所有费用。</li>
+          <li>到船上为止风险由卖家承担，之后风险转给买家。</li>
+          <li>通常做法：<strong>卖家联系货代订舱</strong>，但运费往往是
+            <strong>freight collect（到付）</strong>，由客户在目的港付。</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h3>CIF · 到目的港价</h3>
+        <small>Cost + Insurance + Freight</small>
+        <ul>
+          <li>卖家负责：货值 + 海运费 + 保险费，直到目的港。</li>
+          <li>通常运费为 <strong>freight prepaid（预付）</strong>，出运前要先把运费付给货代/船公司。</li>
+          <li>风险点：运费、附加费、目的港收费不透明，需要提前和货代沟通清楚。</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- 出货流程 -->
+  <section id="flow">
+    <h2>三、出货完整流程（结合你笔记的箭头）</h2>
+    <p>不管是 EXW / FOB / CIF，出货的大框架基本一样，只是责任分界不同。</p>
+    <div class="flow">
+      <div class="flow-item">
+        <strong>确认合同 & 贸易术语</strong>
+        <p>与客户确认：术语（EXW / FOB / CIF）、目的港、提单抬头、付款方式、是否需要保险等。</p>
+      </div>
+      <div class="flow-item">
+        <strong>生产 & 备货</strong>
+        <p>安排生产，出货前确认数量、规格、重量。<strong>提前草拟 Packing List</strong>，方便后面订舱。</p>
+      </div>
+      <div class="flow-item">
+        <strong>准备单据：CI &amp; Packing List</strong>
+        <p>
+          在你笔记左上角写的是：<strong>“结算资料、packing list（产品明细）实际尾数”</strong>，
+          也就是要把产品明细整理成正式的发票和装箱单。
+        </p>
+      </div>
+      <div class="flow-item">
+        <strong>联系货代 & 订舱</strong>
+        <p>将货物信息、目的港、装船时间要求提前发给货代，让他安排船公司、船期和运价。</p>
+      </div>
+      <div class="flow-item">
+        <strong>报关 & 发货</strong>
+        <p>在 FOB / CIF 条件下，卖家配合货代报关，货装上船后取得提单（BL）。</p>
+      </div>
+      <div class="flow-item">
+        <strong>交单收款</strong>
+        <p>根据付款方式（信用证、T/T 预付+余款、DP 等），通过 CI、BL 等单据去收款。</p>
+      </div>
+    </div>
+    <div class="highlight">
+      在你笔记里，“发货 → 经过 CI（商业票）收款”的箭头，就是强调：
+      <strong>发货只是第一步，关键还是要有完整的单据链才能收回货款。</strong>
+    </div>
+  </section>
+
+  <!-- 联系货代 -->
+  <section id="freight">
+    <h2>四、联系货代时要说清楚什么？</h2>
+    <p>中间那一大块“联系货代”的涂写，可以总结为「三早二清楚」：</p>
+    <div class="two-columns">
+      <div class="compare">
+        <h3>三早</h3>
+        <ul>
+          <li><strong>早沟通：</strong>有订单就先问货代近期船期和运价。</li>
+          <li><strong>早给资料：</strong>将产品明细、包装方式、毛重/体积等资料提前发给货代。</li>
+          <li><strong>早锁舱位：</strong>旺季尽量提前 2–3 周订舱，避免「没舱位」导致延期。</li>
+        </ul>
+      </div>
+      <div class="compare">
+        <h3>二清楚</h3>
+        <ul>
+          <li><strong>费用清楚：</strong>询问 <em>海运费 + 起运港杂费 + 目的港可能的收费</em> 是否包含。</li>
+          <li><strong>时间清楚：</strong>开船日（ETD）、到港日（ETA），以及<strong>最晚进港时间</strong>。</li>
+        </ul>
+      </div>
+    </div>
+    <p style="margin-top:8px;">
+      你的笔记右边写到「选择船公司和船期」「货代提前要资料」，在教学时可以告诉学员：
+      <strong>货代其实是你的“航班经纪人”，你给他完整信息，他才能帮你找到合适的船和价格。</strong>
+    </p>
+  </section>
+
+  <!-- 运费预付 vs 到付 -->
+  <section id="freight-pay">
+    <h2>五、运费：Freight Prepaid 与 Freight Collect</h2>
+    <p>笔记中多次提到「运费」「货代提前」「时间」，重点就是运费的付款方式。</p>
+
+    <div class="two-columns">
+      <div class="compare">
+        <h3>Freight Prepaid · 运费预付</h3>
+        <ul>
+          <li>通常出现在 <strong>CIF</strong> 条款下。</li>
+          <li>卖家在开船前就把运费付给货代/船公司。</li>
+          <li>优点：运费可提前锁定，提单上会显示 FREIGHT PREPAID。</li>
+          <li>风险：如果客户后来改单、延迟提货，部分费用可能由你承担。</li>
+        </ul>
+      </div>
+
+      <div class="compare">
+        <h3>Freight Collect · 运费到付</h3>
+        <ul>
+          <li>常见于 <strong>FOB</strong>，有时也会出现「CIF 价格但现场到付」的特殊操作。</li>
+          <li>运费由目的港的客户向船公司/货代支付。</li>
+          <li>优势：你这边现金压力小。</li>
+          <li>风险：客户若不付或晚付，可能产生滞港费、仓储费，甚至货被拍卖。</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="highlight">
+      教学重点可以强调：<strong>FOB + 运费到付</strong> 对卖家资金压力小；
+      <strong>CIF + 运费预付</strong> 有利于控制整体价格，但一定要选靠谱的货代。
+    </div>
+  </section>
+
+  <!-- CIF 实战提醒 -->
+  <section id="cif">
+    <h2>六、CIF 实战中的几个坑（对应笔记底部提醒）</h2>
+    <p>你的笔记底部写到「CIF 如果含运费需要…」「不舒服可更单…」，可以整理成三条实战建议：</p>
+    <ul>
+      <li><strong>1. 明确 CIF 到底包含什么费用</strong>  
+        只包含<strong>海运费 + 基本保险</strong>，还是还要包含起运港、目的港的附加费？
+        这些在和客户 &amp; 货代沟通时一定要白纸黑字写清楚。</li>
+      <li><strong>2. CIF 价格但运费到付，本质上是“混合玩法”</strong>  
+        客户说「你报 CIF，我到港再付运费」，这种做法对新手很不友好：你对实际运费没控制权，
+        却要对客户报价负责，最好谨慎。</li>
+      <li><strong>3. 出现不合理条款可以“更单”</strong>  
+        如果发现条款对你非常不利，可以在装船前要求修改 PI / 合同，
+        不要为了赶船期就完全被动，「让船期推着我们走」。</li>
+    </ul>
+  </section>
+
+  <!-- 单据 -->
+  <section id="docs">
+    <h2>七、必须搞清楚的核心单据</h2>
+    <p>你笔记中多次提到「packing list、CI、资料」，下面整理成一个小清单。</p>
+
+    <div class="grid">
+      <div class="card">
+        <h3>1. Commercial Invoice（CI）</h3>
+        <p>商业发票。包括买卖双方信息、产品明细、金额、付款条件、贸易术语等，是<strong>收款和清关的核心依据</strong>。</p>
+      </div>
+      <div class="card">
+        <h3>2. Packing List</h3>
+        <p>装箱单。详细列出每个包装的净重、毛重、体积、尺寸，是<strong>订舱、报关、装柜</strong>的重要参考。</p>
+      </div>
+      <div class="card">
+        <h3>3. Bill of Lading（BL）</h3>
+        <p>提单。由船公司/货代签发，是<strong>物权单据</strong>，也是很多付款方式（如 DP、LC）中银行要看的关键文件。</p>
+      </div>
+      <div class="card">
+        <h3>4. 其他常见资料</h3>
+        <ul>
+          <li>原产地证（CO）</li>
+          <li>保险单（Insurance Policy）</li>
+          <li>检验证书（如 SGS、BV 等）</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="highlight">
+      从教学角度，可以让学生在纸上画出一条线：
+      <strong>CI &amp; Packing List → 报关 → BL → 交单收款</strong>，
+      用这条线来理解整个单据链。
+    </div>
+  </section>
+
+  <!-- 小测验 -->
+  <section id="quiz">
+    <h2>八、课堂小测验（根据本页内容）</h2>
+    <p>可以让学生现场选择，检验对概念的理解。</p>
+
+    <div class="quiz">
+      <div class="note-title">Quiz 1</div>
+      <p><strong>在 CIF 条款下，通常是谁来联系货代订舱？</strong></p>
+      <label><input type="radio" name="q1" value="A"> 客户自己联系货代，卖家只在工厂交货</label>
+      <label><input type="radio" name="q1" value="B"> 卖家联系货代订舱，并负责海运费和保险</label>
+      <label><input type="radio" name="q1" value="C"> 船公司直接给客户发报价，卖家不参与</label>
+
+      <div class="note-title" style="margin-top:8px;">Quiz 2</div>
+      <p><strong>下面哪一项更符合 Freight Collect（运费到付）的特点？</strong></p>
+      <label><input type="radio" name="q2" value="A"> 运费在装船前由卖家一次性支付</label>
+      <label><input type="radio" name="q2" value="B"> 运费由客户在目的港向船公司/货代支付</label>
+      <label><input type="radio" name="q2" value="C"> 运费完全免费，由船公司承担</label>
+
+      <button type="button" onclick="checkQuiz()">提交答案</button>
+      <div id="quiz-result" class="quiz-result"></div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  基于手写笔记整理 · 我是susan，希望每个学员认真阅读，欢迎提问
+</footer>
+
+<script>
+  function checkQuiz() {
+    const q1 = document.querySelector('input[name="q1"]:checked');
+    const q2 = document.querySelector('input[name="q2"]:checked');
+    let msg = "";
+
+    if (!q1 || !q2) {
+      msg = "请先完成两个题目再提交哦。";
+    } else {
+      const ok1 = q1.value === "B";
+      const ok2 = q2.value === "B";
+      if (ok1 && ok2) {
+        msg = "✅ 全部正确！说明你已经理解 CIF 与运费到付的核心逻辑了。";
+      } else {
+        msg = "❌ 还有小地方需要再复习：\n";
+        if (!ok1) msg += "· CIF 条款下一般是卖家联系货代并负责海运费和保险。\n";
+        if (!ok2) msg += "· Freight Collect 是运费到付，由客户在目的港支付。";
+      }
+    }
+    document.getElementById("quiz-result").textContent = msg;
+  }
+</script>
+</body>
+</html>
